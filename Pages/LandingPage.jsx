@@ -1,11 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
+import { Actions } from 'react-native-router-flux';
+
+const goToStatsFirstPage = () =>{
+  Actions.StatsFirstPage()
+}
 
 const LandingPage = () => {
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.settings]}>
-        <Pressable><Image
+        <Pressable onPress={goToStatsFirstPage}><Image
           style={{ width: 50, height: 50, marginTop: 15}}
           source={require("../assets/settings.png")}
         ></Image></Pressable>
@@ -17,7 +22,7 @@ const LandingPage = () => {
         </Pressable>
       </View>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>High Intensity Intervals</Text>
+        <Text style={{ fontSize: 30 }}>High Intensity ssIntervals</Text>
         <Pressable style={styles.button}>
           <Text>30 sec</Text>
         </Pressable>

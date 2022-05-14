@@ -4,9 +4,11 @@ import PageDelayConfigured from "./Pages/PageDelayConfigured";
 import PageBreakConfigured from "./Pages/PageBreakConfigured";
 import PageIntervalStarts from "./Pages/PageIntervalStarts";
 import StatsFirstPage from "./Pages/StatsFirstPage";
+import Routes from './Routes.js'
+
 
 export default function App() {
-  return <LandingPage />;
+  return <Routes />;
 }
 
 const styles = StyleSheet.create({
