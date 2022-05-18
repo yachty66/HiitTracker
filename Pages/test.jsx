@@ -1,25 +1,25 @@
-const SampleComponent = () => {
-  const StartButton = () => {
-    return <Component1 />;
-  };
+import DropDownPicker from "react-native-dropdown-picker";
+import { View } from "react-native";
 
-  const StopButton = () => {
-    return <Component2 />;
-  };
-
-  const [status, setStatus] = useState(false);
-
+const Test = () => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Apple', value: 'apple'},
+    {label: 'Banana', value: 'banana'}
+  ]);
+  
   return (
-    <View>
-      <Pressable
-        onPress={() => {
-          setStatus(!status);
-        }}
-      >
-        {status ? <StopButton /> : <StartButton />}
-      </Pressable>
-    </View>
+    <DropDownPicker
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+    />
   );
-};
+}
 
-export default SampleComponent;
+export default Test;
+

@@ -1,24 +1,34 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
-import { Actions } from 'react-native-router-flux';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image, Button, Pressable, Picker } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { withNavigation } from "react-navigation";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import StatsFirstPage from "./StatsFirstPage";
+import DropDownPicker from "react-native-dropdown-picker";
 
-const goToStatsFirstPage = () =>{
-  Actions.StatsFirstPage()
-}
-
-const LandingPage = () => {
+const LandingPage = ({ navigation }) => {
+  const [selectedValue, setSelectedValue] = useState("10 rounds");
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.settings]}>
-        <Pressable onPress={goToStatsFirstPage}><Image
-          style={{ width: 50, height: 50, marginTop: 15}}
-          source={require("../assets/settings.png")}
-        ></Image></Pressable>
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+          <Image
+            style={{ width: 50, height: 50, marginTop: 15 }}
+            source={require("../assets/settings.png")}
+          />
+        </TouchableOpacity>
       </View>
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Rounds</Text>
+        <Picker
+        selectedValue={selectedValue}
+        style={{ height: 50, width: 150 }}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+        <Picker.Item label="1 round" value="1round" />
+        <Picker.Item label="2 rounds" value="2rounds" />
+      </Picker>
         <Pressable style={styles.button}>
-          <Text>5 rounds</Text>
         </Pressable>
       </View>
       <View style={[styles.configView]}>

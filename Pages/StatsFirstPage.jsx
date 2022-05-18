@@ -1,14 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 
 const StatsFirstPage = () => {
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.blackColorFill]}>
-        <View style={[styles.backButton]}>
-          <AntDesign name="left" size={40} color="white" />
-        </View>
         <View style={[styles.configView]}>
           <Text style={{ fontSize: 30, color: "white" }}>Inspect runs</Text>
         </View>
@@ -53,13 +49,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 3,
     backgroundColor: "black",
-  },
-
-  backButton: {
-    flex: 1.2,
-    backgroundColor: "black",
-    paddingTop: 25,
-    marginBottom: 10,
   },
 
   blackColorFill: {
