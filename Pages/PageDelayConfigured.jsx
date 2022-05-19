@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import LandingPage from "./LandingPage";
+import { RoundContext } from "../Contexts/RoundContext";
 
 import {
   Text,
@@ -12,17 +14,7 @@ import {
   Alert,
 } from "react-native";
 
-/*const startButton = <FontAwesome name="start" size={100} color="black" />;
-  const stopButton = <AntDesign name="caretright" size={100} color="black" />;
 
-  const status = "stop";*/
-
-/*<Pressable onPress={() =>{
-          if(status == stopButton){
-            console.log("hallo");
-            status = <FontAwesome name="start" size={100} color="black" />;
-          }
-        }}>{status}</Pressable> */
 
 const PageDelayConfigured = () => {
   const StartButton = () => {
@@ -34,36 +26,15 @@ const PageDelayConfigured = () => {
   };
 
   const [status, setStatus] = useState(false);
-
-  const showConfirmDialog = () => {
-    return Alert.alert("Are your sure?", "Are you sure you want to go back?", [
-      {
-        text: "Yes",
-        onPress: () => {
-          setShowBox(false);
-        },
-      },
-      {
-        text: "No",
-      },
-    ]);
-  };
-
+  const {selectedValueRound, setSelectedValueRound} = useContext(RoundContext);
+  console.log(useContext(RoundContext))
   return (
     <View style={[styles.container, {}]}>
-      <View style={[styles.backButton]}>
-        <Pressable onPress={() => showConfirmDialog()}>
-          <Image
-            style={{ width: 30, height: 30, marginTop: 15 }}
-            source={require("../assets/backButton.png")}
-          ></Image>
-        </Pressable>
-      </View>
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Round</Text>
-        <Pressable style={styles.button}>
-          <Text>1/20</Text>
-        </Pressable>
+        <View style={styles.button}>
+          <Text>{selectedValueRound}</Text>
+        </View>
       </View>
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Delay</Text>
