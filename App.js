@@ -9,7 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import MyStack from "./Pages/MyStack";
 import Test from "./Pages/Test";
 import { RoundContext } from "./Contexts/RoundContext";
-import { RoundContextProvider } from "./Contexts/ContextProvider";
+import { RoundContextProvider } from "./Contexts/ContextProviderRound";
 
 
 

@@ -27,7 +27,7 @@ const PageDelayConfigured = () => {
 
   const [status, setStatus] = useState(false);
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
-  console.log(useContext(RoundContext))
+
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.configView]}>
