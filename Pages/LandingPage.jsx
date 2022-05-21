@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Picker } from "@react-native-picker/picker";
-
-const log = () => {
-  console.log(selectedValueRound)
-}
+import { RoundContext } from "../Contexts/RoundContext";
+import { DelayContext } from "../Contexts/DelayContext";
 
 const LandingPage = ({ navigation }) => {
-  const [selectedValueRound, setSelectedValueRound] = useState("10 rounds");
+  const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
   const [selectedValueInterval, setSelectedValueInterval] = useState("30 sec");
-  const [selectedValueDelay, setSelectedValueDelay] = useState("10 sec");
-  
+  const [selectedValueDelay, setSelectedValueDelay] = useState(DelayContext);
+
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.settings]}>
@@ -35,9 +33,7 @@ const LandingPage = ({ navigation }) => {
           }}
           onValueChange={(itemValue, itemIndex) =>
             setSelectedValueRound(itemValue)
-
           }
-          
           itemStyle={{ height: 44 }}
         >
           <Picker.Item label="1 round" value="0"></Picker.Item>
@@ -249,7 +245,10 @@ const LandingPage = ({ navigation }) => {
         </Picker>
       </View>
       <View style={[styles.configView]}>
-        <Pressable style={styles.startButton} onPress={() => navigation.navigate("PageTwoDelay")}>
+        <Pressable
+          style={styles.startButton}
+          onPress={() => navigation.navigate("PageTwoDelay")}
+        >
           <Text style={{ fontSize: 40 }}>START</Text>
         </Pressable>
       </View>
@@ -265,8 +264,6 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
   },
-
-
 
   configView: {
     backgroundColor: "red",

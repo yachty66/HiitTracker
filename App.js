@@ -9,18 +9,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import MyStack from "./Pages/MyStack";
 import Test from "./Pages/Test";
 import { RoundContext } from "./Contexts/RoundContext";
+import { RoundContextProvider } from "./Contexts/ContextProvider";
 
 
 
 /*const App = () => {
   return <MyStack/>
-
 };*/
 
 export default function App() {
-  return <MyStack/>
+  return <RoundContextProvider><MyStack/></RoundContextProvider>
 }
-
 
 const styles = StyleSheet.create({
   container: {

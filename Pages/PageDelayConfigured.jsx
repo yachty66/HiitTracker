@@ -26,20 +26,20 @@ const PageDelayConfigured = () => {
   };
 
   const [status, setStatus] = useState(false);
-  const {selectedValueRound, setSelectedValueRound} = useContext(RoundContext);
+  const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
   console.log(useContext(RoundContext))
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Round</Text>
         <View style={styles.button}>
-          <Text>{selectedValueRound}</Text>
+          <Text>{parseInt(selectedValueRound)+1}</Text>
         </View>
       </View>
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Delay</Text>
         <Pressable style={styles.button}>
-          <Text>10 sec</Text>
+          <Text>{parseInt(selectedValueDelay)+1}</Text>
         </Pressable>
       </View>
       <View style={[styles.configView]}>

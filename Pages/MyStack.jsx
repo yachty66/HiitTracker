@@ -6,6 +6,7 @@ import PageDelayConfigured from "./PageDelayConfigured";
 import React, { useContext, useState } from "react";
 import LandingPage from "./LandingPage";
 import { RoundContext } from "../Contexts/RoundContext";
+import { DelayContext} from "../Contexts/ContextProviderDelay";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,10 +15,13 @@ const MyStack = () => {
 
   //const {selectedValueRound, setSelectedValueRound} = useContext(RoundContext);
 
-  const [selectedValueRound, setSelectedValueRound] = useState("10 rounds");
+  const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
+
+  const [selectedValueDelay, setSelectedValueDelay] = useState(DelayContext);
 
 
   return (
+    <DelayContext.Provider value={[selectedValueDelay, setSelectedValueDelay]}>
     <RoundContext.Provider value={[selectedValueRound, setSelectedValueRound]}>
       <NavigationContainer>
         <Stack.Navigator>
@@ -60,6 +64,7 @@ const MyStack = () => {
         </Stack.Navigator>
       </NavigationContainer>
     </RoundContext.Provider>
+    </DelayContext.Provider>
   );
   
 };
