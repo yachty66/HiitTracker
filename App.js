@@ -7,11 +7,8 @@ import PageIntervalStarts from "./Pages/PageIntervalStarts";
 import StatsFirstPage from "./Pages/StatsFirstPage";
 import { NavigationContainer } from '@react-navigation/native';
 import MyStack from "./Pages/MyStack";
-import Test from "./Pages/Test";
 import { RoundContext } from "./Contexts/RoundContext";
-import { RoundContextProvider } from "./Contexts/ContextProviderRound";
-
-
+import { RoundContextProvider } from "./Contexts/RountContextProvider";
 
 /*const App = () => {
   return <MyStack/>

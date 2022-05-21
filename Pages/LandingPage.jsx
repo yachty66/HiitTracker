@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Picker } from "@react-native-picker/picker";
 import { RoundContext } from "../Contexts/RoundContext";
-import { DelayContext } from "../Contexts/DelayContext";
 
 const LandingPage = ({ navigation }) => {
+  //const {selectedValueRound, ysetSelectedValueRound} = useContext(RoundContext);
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
-  const [selectedValueInterval, setSelectedValueInterval] = useState("30 sec");
-  const [selectedValueDelay, setSelectedValueDelay] = useState(DelayContext);
+  //const [selectedValueInterval, setSelectedValueInterval] = useState("30 sec");
+  // const [selectedValueDelay, setSelectedValueDelay] = useState(DelayContext);
 
   return (
     <View style={[styles.container, {}]}>
@@ -91,7 +91,6 @@ const LandingPage = ({ navigation }) => {
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>High Intensity Intervals</Text>
         <Picker
-          selectedValue={selectedValueInterval}
           style={{
             height: 50,
             width: 200,
@@ -99,9 +98,6 @@ const LandingPage = ({ navigation }) => {
             borderColor: "black",
             borderWidth: 2,
           }}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedValueInterval(itemValue)
-          }
           itemStyle={{ height: 44 }}
         >
           <Picker.Item label="1 sec" value="0Two"></Picker.Item>
@@ -169,7 +165,6 @@ const LandingPage = ({ navigation }) => {
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Delay till start</Text>
         <Picker
-          selectedValue={selectedValueDelay}
           style={{
             height: 50,
             width: 200,
@@ -177,9 +172,6 @@ const LandingPage = ({ navigation }) => {
             borderColor: "black",
             borderWidth: 2,
           }}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedValueDelay(itemValue)
-          }
           itemStyle={{ height: 44 }}
         >
           <Picker.Item label="1 sec" value="0Three"></Picker.Item>

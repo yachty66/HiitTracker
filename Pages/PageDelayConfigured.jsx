@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import LandingPage from "./LandingPage";
-import { RoundContext } from "../Contexts/RoundContext";
 
 import {
   Text,
@@ -13,8 +12,7 @@ import {
   Button,
   Alert,
 } from "react-native";
-
-
+import { RoundContext } from "../Contexts/RoundContext";
 
 const PageDelayConfigured = () => {
   const StartButton = () => {
@@ -33,13 +31,13 @@ const PageDelayConfigured = () => {
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Round</Text>
         <View style={styles.button}>
-          <Text>{parseInt(selectedValueRound)+1}</Text>
+          <Text>{parseInt(selectedValueRound) + 1}</Text>
         </View>
       </View>
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Delay</Text>
         <Pressable style={styles.button}>
-          <Text>{parseInt(selectedValueDelay)+1}</Text>
+          <Text></Text>
         </Pressable>
       </View>
       <View style={[styles.configView]}>
