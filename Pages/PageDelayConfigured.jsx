@@ -13,6 +13,7 @@ import {
   Alert,
 } from "react-native";
 import { RoundContext } from "../Contexts/RoundContext";
+import { DelayContext } from "../Contexts/DelayContext";
 
 const PageDelayConfigured = () => {
   const StartButton = () => {
@@ -25,7 +26,7 @@ const PageDelayConfigured = () => {
 
   const [status, setStatus] = useState(false);
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
-
+  const [selectedValueDelay, setSelectedValueDelay] = useState("ww");
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.configView]}>
@@ -37,7 +38,7 @@ const PageDelayConfigured = () => {
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30 }}>Delay</Text>
         <Pressable style={styles.button}>
-          <Text></Text>
+          <Text>{parseInt(selectedValueDelay) + 1}</Text>
         </Pressable>
       </View>
       <View style={[styles.configView]}>
