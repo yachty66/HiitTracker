@@ -1,21 +1,13 @@
 import React, { useContext, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import LandingPage from "./LandingPage";
 
-import {
-  Text,
-  View,
-  StyleSheet,
-  Pressable,
-  Image,
-  Button,
-  Alert,
-} from "react-native";
+import { Text, View, StyleSheet, Pressable } from "react-native";
 import { RoundContext } from "../Contexts/RoundContext";
 import { DelayContext } from "../Contexts/DelayContext";
+import CountDown from "react-native-countdown-component";
 
-const PageDelayConfigured = () => {
+const PageDelayConfigured = ({ navigation }) => {
   const StartButton = () => {
     return <FontAwesome name="stop" size={100} color="black" />;
   };
@@ -24,25 +16,43 @@ const PageDelayConfigured = () => {
     return <AntDesign name="caretright" size={100} color="black" />;
   };
 
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(3);
+
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
-  const [selectedValueDelay, setSelectedValueDelay] = useState("ww");
+  const [selectedValueDelay, setSelectedValueDelay] = useContext(DelayContext);
+
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>Round</Text>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>Round</Text>
         <View style={styles.button}>
-          <Text>{parseInt(selectedValueRound) + 1}</Text>
+          <Text style={styles.someText}>
+            1 / {parseInt(selectedValueRound) + 1}
+          </Text>
         </View>
       </View>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>Delay</Text>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>Delay</Text>
+
         <Pressable style={styles.button}>
-          <Text>{parseInt(selectedValueDelay) + 1}</Text>
+          <CountDown
+            size={40}
+            until={parseInt(selectedValueDelay) + 1}
+            /*onFinish={() => alert('Finished')}*/
+            digitStyle={{
+              backgroundColor: "red",
+              borderWidth: 0,
+              borderColor: "#1CC625",
+            }}
+            timeToShow={["S"]}
+            running={status}
+            timeLabels={{ m: null, s: null }}
+            onFinish={() => navigation.navigate("PageThreeStart")}
+          />
         </Pressable>
       </View>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>
           {status ? <Text>Play</Text> : <Text>Stop</Text>}
         </Text>
         <Pressable
@@ -74,20 +84,22 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    fontSize: 40,
     borderWidth: 2,
     borderColor: "black",
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    width: 120,
+    height: 120,
     borderRadius: 4,
     elevation: 3,
     backgroundColor: "red",
   },
 
-  backButton: {
-    flex: 1,
-    backgroundColor: "red",
+  someText: {
+    fontSize: 40,
+    fontWeight: "bold",
   },
 });
 

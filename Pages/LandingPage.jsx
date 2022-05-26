@@ -4,12 +4,15 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Picker } from "@react-native-picker/picker";
 import { RoundContext } from "../Contexts/RoundContext";
 import { DelayContext } from "../Contexts/DelayContext";
+import {IntervalContext} from "../Contexts/IntervalContext";
 
 const LandingPage = ({ navigation }) => {
   //const {selectedValueRound, ysetSelectedValueRound} = useContext(RoundContext);
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
   //const [selectedValueInterval, setSelectedValueInterval] = useState("30 sec");
-  const [selectedValueDelay, setSelectedValueDelay] = useState("3");
+  const [selectedValueDelay, setSelectedValueDelay] = useContext(DelayContext);
+
+  const [selectedValueInterval, setSelectedValueInterval] = useContext(IntervalContext);
 
   return (
     <View style={[styles.container, {}]}>

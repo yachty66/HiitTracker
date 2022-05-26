@@ -24,7 +24,7 @@ import {
           }
         }}>{status}</Pressable> */
 
-const PageDelayConfigured = () => {
+const PageIntervalStarts = () => {
   const StartButton = () => {
     return <FontAwesome name="stop" size={100} color="black" />;
   };
@@ -35,44 +35,24 @@ const PageDelayConfigured = () => {
 
   const [status, setStatus] = useState(false);
 
-  const showConfirmDialog = () => {
-    return Alert.alert("Are your sure?", "Are you sure you want to go back?", [
-      {
-        text: "Yes",
-        onPress: () => {
-          setShowBox(false);
-        },
-      },
-      {
-        text: "No",
-      },
-    ]);
-  };
-
   return (
     <View style={[styles.container, {}]}>
-      <View style={[styles.backButton]}>
-        <Pressable onPress={() => showConfirmDialog()}>
-          <Image
-            style={{ width: 30, height: 30, marginTop: 15 }}
-            source={require("../assets/backButton.png")}
-          ></Image>
-        </Pressable>
-      </View>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>Round</Text>
+        <Text style={{ fontSize: 40, fontWeight: "bold" }}>Round</Text>
         <Pressable style={styles.button}>
           <Text>1/20</Text>
         </Pressable>
       </View>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>High Intensity Interval</Text>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+          High Intensity Interval
+        </Text>
         <Pressable style={styles.button}>
           <Text>10 sec</Text>
         </Pressable>
       </View>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>
+        <Text style={{ fontSize: 40, fontWeight: "bold" }}>
           {status ? <Text>Play</Text> : <Text>Stop</Text>}
         </Text>
         <Pressable
@@ -104,21 +84,18 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    fontSize: 40,
     borderWidth: 2,
     borderColor: "black",
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    width: 120,
+    height: 120,
     borderRadius: 4,
     elevation: 3,
     backgroundColor: "#04D100",
   },
-
-  backButton: {
-    flex: 1,
-    backgroundColor: "#04D100",
-  },
 });
 
-export default PageDelayConfigured;
+export default PageIntervalStarts;
