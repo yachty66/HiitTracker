@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { IntervalContext } from "../Contexts/IntervalContext";
+import { CurrentRoundContext } from "../Contexts/CurrentRoundContext";
+import { RoundContext } from "../Contexts/RoundContext";
+import CountDown from "react-native-countdown-component";
 
 import {
   Text,
@@ -11,20 +15,15 @@ import {
   Button,
   Alert,
 } from "react-native";
+import PageBreakConfigured from "./PageBreakConfigured";
 
-/*const startButton = <FontAwesome name="start" size={100} color="black" />;
-  const stopButton = <AntDesign name="caretright" size={100} color="black" />;
+const PageIntervalStarts = ({ navigation }) => {
+  const [selectedValueInterval, setSelectedValueInterval] =
+    useContext(IntervalContext);
+  const [currentValueRound, setCurrentValueRound] =
+    useContext(CurrentRoundContext);
+  const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
 
-  const status = "stop";*/
-
-/*<Pressable onPress={() =>{
-          if(status == stopButton){
-            console.log("hallo");
-            status = <FontAwesome name="start" size={100} color="black" />;
-          }
-        }}>{status}</Pressable> */
-
-const PageIntervalStarts = () => {
   const StartButton = () => {
     return <FontAwesome name="stop" size={100} color="black" />;
   };
@@ -33,14 +32,17 @@ const PageIntervalStarts = () => {
     return <AntDesign name="caretright" size={100} color="black" />;
   };
 
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(3);
+
 
   return (
     <View style={[styles.container, {}]}>
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 40, fontWeight: "bold" }}>Round</Text>
         <Pressable style={styles.button}>
-          <Text>1/20</Text>
+          <Text style={styles.someText}>
+            {currentValueRound} / {parseInt(selectedValueRound) + 1}
+          </Text>
         </Pressable>
       </View>
       <View style={[styles.configView]}>
@@ -48,7 +50,18 @@ const PageIntervalStarts = () => {
           High Intensity Interval
         </Text>
         <Pressable style={styles.button}>
-          <Text>10 sec</Text>
+          <CountDown
+            size={40}
+            until={parseInt(selectedValueInterval) + 1}
+            /*onFinish={() => alert('Finished')}*/
+            digitStyle={{
+              backgroundColor: "#04D100",
+            }}
+            timeToShow={["S"]}
+            running={status}
+            timeLabels={{ m: null, s: null }}
+            onFinish={() => {navigation.navigate("PageFourBreak")}}
+          />
         </Pressable>
       </View>
       <View style={[styles.configView]}>
@@ -95,6 +108,11 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     elevation: 3,
     backgroundColor: "#04D100",
+  },
+
+  someText: {
+    fontSize: 40,
+    fontWeight: "bold",
   },
 });
 

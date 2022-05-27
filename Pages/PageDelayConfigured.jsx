@@ -5,6 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import { RoundContext } from "../Contexts/RoundContext";
 import { DelayContext } from "../Contexts/DelayContext";
+import { CurrentRoundContext } from "../Contexts/CurrentRoundContext";
 import CountDown from "react-native-countdown-component";
 
 const PageDelayConfigured = ({ navigation }) => {
@@ -20,6 +21,7 @@ const PageDelayConfigured = ({ navigation }) => {
 
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
   const [selectedValueDelay, setSelectedValueDelay] = useContext(DelayContext);
+  const [currentValueRound, setCurrentValueRound] = useContext(CurrentRoundContext);
 
   return (
     <View style={[styles.container, {}]}>
@@ -27,7 +29,7 @@ const PageDelayConfigured = ({ navigation }) => {
         <Text style={{ fontSize: 30, fontWeight: "bold" }}>Round</Text>
         <View style={styles.button}>
           <Text style={styles.someText}>
-            1 / {parseInt(selectedValueRound) + 1}
+             {currentValueRound} / {parseInt(selectedValueRound) + 1}
           </Text>
         </View>
       </View>
@@ -38,7 +40,6 @@ const PageDelayConfigured = ({ navigation }) => {
           <CountDown
             size={40}
             until={parseInt(selectedValueDelay) + 1}
-            /*onFinish={() => alert('Finished')}*/
             digitStyle={{
               backgroundColor: "red",
               borderWidth: 0,

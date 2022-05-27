@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { IntervalContext } from "../Contexts/IntervalContext";
+import CountDown from "react-native-countdown-component";
 
 import {
   Text,
@@ -11,20 +13,19 @@ import {
   Button,
   Alert,
 } from "react-native";
+import { CurrentRoundContext } from "../Contexts/CurrentRoundContext";
+import { RoundContext } from "../Contexts/RoundContext";
 
-/*const startButton = <FontAwesome name="start" size={100} color="black" />;
-  const stopButton = <AntDesign name="caretright" size={100} color="black" />;
 
-  const status = "stop";*/
 
-/*<Pressable onPress={() =>{
-          if(status == stopButton){
-            console.log("hallo");
-            status = <FontAwesome name="start" size={100} color="black" />;
-          }
-        }}>{status}</Pressable> */
+const PageBreakConfigured = ({ navigation }) => {
 
-const PageDelayConfigured = () => {
+
+  
+  const [selectedValueInterval, setSelectedValueInterval] = useContext(IntervalContext);
+  const [currentValueRound, setCurrentValueRound] = useContext(CurrentRoundContext);
+  const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
+
   const StartButton = () => {
     return <FontAwesome name="stop" size={100} color="black" />;
   };
@@ -33,46 +34,38 @@ const PageDelayConfigured = () => {
     return <AntDesign name="caretright" size={100} color="black" />;
   };
 
-  const [status, setStatus] = useState(false);
-
-  const showConfirmDialog = () => {
-    return Alert.alert("Are your sure?", "Are you sure you want to go back?", [
-      {
-        text: "Yes",
-        onPress: () => {
-          setShowBox(false);
-        },
-      },
-      {
-        text: "No",
-      },
-    ]);
-  };
+  const [status, setStatus] = useState(3);
 
   return (
     <View style={[styles.container, {}]}>
-      <View style={[styles.backButton]}>
-        <Pressable onPress={() => showConfirmDialog()}>
-          <Image
-            style={{ width: 30, height: 30, marginTop: 15 }}
-            source={require("../assets/backButton.png")}
-          ></Image>
-        </Pressable>
-      </View>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>Round</Text>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>Round</Text>
         <Pressable style={styles.button}>
-          <Text>1/20</Text>
+          <Text style={styles.someText}>{currentValueRound}/{parseInt(selectedValueRound) + 1}</Text>
         </Pressable>
       </View>
       <View style={[styles.configView]}>
-        <Text style={{ fontSize: 30 }}>Break</Text>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>Break</Text>
         <Pressable style={styles.button}>
-          <Text>10 sec</Text>
+          <Countdownreset
+            size={40}
+            //until={(60-parseInt(selectedValueInterval))-1}
+            until={3}
+            onFinish={() => (currentValueRound+1)}
+            digitStyle={{
+              backgroundColor: "red",
+              borderWidth: 0,
+              borderColor: "#1CC625",
+            }}
+            timeToShow={["S"]}
+            running={status}
+            timeLabels={{ m: null, s: null }}
+            onFinish={() => {navigation.navigate("PageThreeStart"); parseInt(currentValueRound)+1}}
+          />
         </Pressable>
       </View>
       <View style={[styles.configView]}>
-      <Text style={{ fontSize: 30 }}>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>
           {status ? <Text>Play</Text> : <Text>Stop</Text>}
         </Text>
         <Pressable
@@ -104,21 +97,23 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    fontSize: 40,
     borderWidth: 2,
     borderColor: "black",
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    width: 120,
+    height: 120,
     borderRadius: 4,
     elevation: 3,
     backgroundColor: "red",
   },
 
-  backButton: {
-    flex: 1,
-    backgroundColor: "red",
+  someText: {
+    fontSize: 40,
+    fontWeight: "bold",
   },
 });
 
-export default PageDelayConfigured;
+export default PageBreakConfigured;

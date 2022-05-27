@@ -6,6 +6,7 @@ import React, { useContext, useState } from "react";
 import LandingPage from "./LandingPage";
 import { RoundContext } from "../Contexts/RoundContext";
 import PageIntervalStarts from "./PageIntervalStarts";
+import PageBreakConfigured from "./PageBreakConfigured";
 
 const Stack = createStackNavigator();
 
@@ -59,9 +60,29 @@ const MyStack = () => {
           options={{
             title: "",
             headerStyle: {
-              backgroundColor: "black",
+              elevation: 0, 
+              shadowOpacity: 0, 
+              borderBottomWidth: 0, 
+              backgroundColor: "#04D100",
             },
-            headerTintColor: "#fff",
+            headerTintColor: "black",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="PageFourBreak"
+          component={PageBreakConfigured}
+          options={{
+            title: "",
+            headerStyle: {
+              elevation: 0, 
+              shadowOpacity: 0, 
+              borderBottomWidth: 0, 
+              backgroundColor: "red",
+            },
+            headerTintColor: "black",
             headerTitleStyle: {
               fontWeight: "bold",
             },
