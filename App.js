@@ -13,6 +13,8 @@ import { DelayContextProvider } from "./Contexts/DelayContextProvider";
 import Test from "./Pages/Test"
 import { IntervalContextProvider } from "./Contexts/IntervalContextProvider";
 import { CurrentRoundContextProvider } from "./Contexts/CurrentRoundContextProvider";
+import { RendererProvider } from "./Contexts/RendererProvider";
+import { Renderer } from "react-dom";
 
 /*const App = () => {
   return <MyStack/>
@@ -20,7 +22,7 @@ import { CurrentRoundContextProvider } from "./Contexts/CurrentRoundContextProvi
 
 export default function App() {
   
-return <CurrentRoundContextProvider><IntervalContextProvider><DelayContextProvider><RoundContextProvider><MyStack/></RoundContextProvider></DelayContextProvider></IntervalContextProvider></CurrentRoundContextProvider>
+return <RendererProvider><CurrentRoundContextProvider><IntervalContextProvider><DelayContextProvider><RoundContextProvider><MyStack/></RoundContextProvider></DelayContextProvider></IntervalContextProvider></CurrentRoundContextProvider></RendererProvider>
  //return <PageBreakConfigured/>
 }
 

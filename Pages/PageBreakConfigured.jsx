@@ -3,6 +3,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { IntervalContext } from "../Contexts/IntervalContext";
 import CountDown from "react-native-countdown-component";
+import useForceUpdate from 'use-force-update';
+
 
 import {
   Text,
@@ -15,6 +17,7 @@ import {
 } from "react-native";
 import { CurrentRoundContext } from "../Contexts/CurrentRoundContext";
 import { RoundContext } from "../Contexts/RoundContext";
+import { Renderer } from "../Contexts/Renderer";
 
 
 
@@ -25,6 +28,7 @@ const PageBreakConfigured = ({ navigation }) => {
   const [selectedValueInterval, setSelectedValueInterval] = useContext(IntervalContext);
   const [currentValueRound, setCurrentValueRound] = useContext(CurrentRoundContext);
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
+  const [rerender, setRerender] = useContext(Renderer);
 
   const StartButton = () => {
     return <FontAwesome name="stop" size={100} color="black" />;
@@ -35,6 +39,8 @@ const PageBreakConfigured = ({ navigation }) => {
   };
 
   const [status, setStatus] = useState(3);
+
+  const forceUpdate = useForceUpdate();
 
   return (
     <View style={[styles.container, {}]}>
@@ -47,11 +53,10 @@ const PageBreakConfigured = ({ navigation }) => {
       <View style={[styles.configView]}>
         <Text style={{ fontSize: 30, fontWeight: "bold" }}>Break</Text>
         <Pressable style={styles.button}>
-          <Countdownreset
+          <CountDown
             size={40}
             //until={(60-parseInt(selectedValueInterval))-1}
             until={3}
-            onFinish={() => (currentValueRound+1)}
             digitStyle={{
               backgroundColor: "red",
               borderWidth: 0,
@@ -60,7 +65,8 @@ const PageBreakConfigured = ({ navigation }) => {
             timeToShow={["S"]}
             running={status}
             timeLabels={{ m: null, s: null }}
-            onFinish={() => {navigation.navigate("PageThreeStart"); parseInt(currentValueRound)+1}}
+            //if round gets setround+1 stop training
+            onFinish={() => {setCurrentValueRound(parseInt(currentValueRound) + 1); navigation.navigate("PageThreeStart");}}
           />
         </Pressable>
       </View>

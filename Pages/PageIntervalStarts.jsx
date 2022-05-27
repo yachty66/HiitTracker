@@ -5,6 +5,7 @@ import { IntervalContext } from "../Contexts/IntervalContext";
 import { CurrentRoundContext } from "../Contexts/CurrentRoundContext";
 import { RoundContext } from "../Contexts/RoundContext";
 import CountDown from "react-native-countdown-component";
+import { Renderer } from "../Contexts/Renderer";
 
 import {
   Text,
@@ -23,6 +24,7 @@ const PageIntervalStarts = ({ navigation }) => {
   const [currentValueRound, setCurrentValueRound] =
     useContext(CurrentRoundContext);
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
+  const [rerender, setRerender] = useContext(Renderer);
 
   const StartButton = () => {
     return <FontAwesome name="stop" size={100} color="black" />;
@@ -33,7 +35,6 @@ const PageIntervalStarts = ({ navigation }) => {
   };
 
   const [status, setStatus] = useState(3);
-
 
   return (
     <View style={[styles.container, {}]}>
@@ -52,15 +53,18 @@ const PageIntervalStarts = ({ navigation }) => {
         <Pressable style={styles.button}>
           <CountDown
             size={40}
+            id={Math.random()}
             until={parseInt(selectedValueInterval) + 1}
-            /*onFinish={() => alert('Finished')}*/
             digitStyle={{
               backgroundColor: "#04D100",
             }}
             timeToShow={["S"]}
             running={status}
             timeLabels={{ m: null, s: null }}
-            onFinish={() => {navigation.navigate("PageFourBreak")}}
+            onFinish={() => {
+              navigation.navigate("PageFourBreak");
+              setRerender(rerender + 1);
+            }}
           />
         </Pressable>
       </View>
