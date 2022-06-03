@@ -30,6 +30,20 @@ const PageBreakConfigured = ({ navigation }) => {
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
   const [rerender, setRerender] = useContext(Renderer);
 
+  const showConfirmDialog = () => {
+    return Alert.alert("Are your sure?", "Are you sure you want to go back?", [
+      {
+        text: "Yes",
+        onPress: () => {
+          //safe training
+        },
+      },
+      {
+        text: "No",
+      },
+    ]);
+  };
+
   const StartButton = () => {
     return <FontAwesome name="stop" size={100} color="black" />;
   };
@@ -41,6 +55,16 @@ const PageBreakConfigured = ({ navigation }) => {
   const [status, setStatus] = useState(3);
 
   const forceUpdate = useForceUpdate();
+
+  const checkRounds = () => {
+    console.log(currentValueRound)
+    console.log(selectedValueRound)
+    if(currentValueRound > parseInt(selectedValueRound)){
+      showConfirmDialog();
+      console.log("Ist groeßer");
+      navigation.navigate("Home");
+    }
+  };
 
   return (
     <View style={[styles.container, {}]}>
@@ -66,7 +90,7 @@ const PageBreakConfigured = ({ navigation }) => {
             running={status}
             timeLabels={{ m: null, s: null }}
             //if round gets setround+1 stop training
-            onFinish={() => {setCurrentValueRound(parseInt(currentValueRound) + 1); navigation.navigate("PageThreeStart");}}
+            onFinish={() => { setCurrentValueRound(parseInt(currentValueRound) + 1); navigation.navigate("PageThreeStart"); checkRounds();}}
           />
         </Pressable>
       </View>

@@ -1,7 +1,4 @@
-1. global round über all anpassen
-2. switch from break to HII
-    1. set timer again to start value
-3. check if it works that rounds globally increase 
-    1. fix bug of stucking countdown
-4. steps for when round x/x
-5. configure start and stop correct
+
+1. get same screen run seperately from main project
+
+https://www.npmjs.com/package/react-native-get-location

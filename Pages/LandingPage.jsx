@@ -5,9 +5,11 @@ import { Picker } from "@react-native-picker/picker";
 import { RoundContext } from "../Contexts/RoundContext";
 import { DelayContext } from "../Contexts/DelayContext";
 import { IntervalContext } from "../Contexts/IntervalContext";
+import { CurrentRoundContext } from "../Contexts/CurrentRoundContext";
 
 const LandingPage = ({ navigation }) => {
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
+  const [currentValueRound, setCurrentValueRound] = useContext(CurrentRoundContext);
   
   //const [selectedValueInterval, setSelectedValueInterval] = useState("30 sec");
   const [selectedValueDelay, setSelectedValueDelay] = useContext(DelayContext);
@@ -251,7 +253,7 @@ const LandingPage = ({ navigation }) => {
       <View style={[styles.configView]}>
         <Pressable
           style={styles.startButton}
-          onPress={() => navigation.navigate("PageTwoDelay")}
+          onPress={() => {navigation.navigate("PageTwoDelay"); setCurrentValueRound(1)}}
         >
           <Text style={{ fontSize: 40 }}>START</Text>
         </Pressable>
