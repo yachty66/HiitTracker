@@ -1,0 +1,6 @@
+module Pods_hiitTracker {
+  umbrella header "Pods-hiitTracker-umbrella.h"
+
+  export *
+  module * { export * }
+}

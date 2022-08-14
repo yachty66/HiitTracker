@@ -22,7 +22,8 @@ import { Renderer } from "react-dom";
 
 export default function App() {
   
-return <RendererProvider><CurrentRoundContextProvider><IntervalContextProvider><DelayContextProvider><RoundContextProvider><MyStack/></RoundContextProvider></DelayContextProvider></IntervalContextProvider></CurrentRoundContextProvider></RendererProvider>
+return <RendererProvider>
+  <CurrentRoundContextProvider><IntervalContextProvider><DelayContextProvider><RoundContextProvider><MyStack/></RoundContextProvider></DelayContextProvider></IntervalContextProvider></CurrentRoundContextProvider></RendererProvider>
  //return <PageBreakConfigured/>
 }
 

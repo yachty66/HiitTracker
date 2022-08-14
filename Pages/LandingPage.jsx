@@ -6,7 +6,7 @@ import { RoundContext } from "../Contexts/RoundContext";
 import { DelayContext } from "../Contexts/DelayContext";
 import { IntervalContext } from "../Contexts/IntervalContext";
 import { CurrentRoundContext } from "../Contexts/CurrentRoundContext";
-
+import GetLocation from 'react-native-get-location'
 const LandingPage = ({ navigation }) => {
   const [selectedValueRound, setSelectedValueRound] = useContext(RoundContext);
   const [currentValueRound, setCurrentValueRound] = useContext(CurrentRoundContext);
@@ -16,8 +16,11 @@ const LandingPage = ({ navigation }) => {
 
   const [selectedValueInterval, setSelectedValueInterval] = useContext(IntervalContext);
 
+  
+
   return (
     <View style={[styles.container, {}]}>
+    
       <View style={[styles.settings]}>
         <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
           <Image
